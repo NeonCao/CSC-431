@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table, td, th {
+            align-content: center;
+            border: 1px solid black;
+        }
+
+        table {
+            border-collapse: collapse;
+            align-content: center;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+    <h1>Order inforamtion</h1>
+    <table>
+        <tr>
+            <td class="column">Order Id</td>
+            <td th:text="${order.getId()}"></td>
+        </tr>
+        <tr>
+            <td class="column">Order date</td>
+            <td th:text="${order.getDate()}"></td>
+        </tr>
+        <tr>
+            <td class="column">Need to pay</td>
+            <td th:text="${order.getPrice()}"></td>
+        </tr>
+    </table>
+    <form th:action="@{/doPay/{roomId}/{userId}/(roomId=${order.getRoomId()},userId=${order.getUserId()})}">
+        <button>Pay</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table, td, th {
+            align-content: center;
+            border: 1px solid black;
+        }
+
+        table {
+            border-collapse: collapse;
+            align-content: center;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+    <h1>Current Detail inforamtion</h1>
+    <table>
+        <tr>
+            <td class="column">Room Floor</td>
+            <td th:text="${room.getFloor()}"></td>
+        </tr>
+        <tr>
+            <td class="column">Room Number</td>
+            <td th:text="${room.getNumber()}"></td>
+        </tr>
+        <tr>
+            <td class="column">Room Price</td>
+            <td th:text="${room.getPrice()}"></td>
+        </tr>
+        <tr>
+            <td class="column">Room is using</td>
+            <td th:text="${room.isUsing()}"></td>
+        </tr>
+    </table>
+    <form th:action="@{/generateOrder/{roomId}/{userId}/(roomId=${room.getId()},userId=${userId})}">
+        <label>Start Date：</label><input type="date" name="startDate"
+                                         value="2021-05-1"
+                                         min="2021-05-1" max="2021-12-31">
+        <label>End Date：</label><input type="date" name="endDate"
+                                       value="2021-05-1"
+                                       min="2021-05-1" max="2021-12-31">
+        <button>Subscribe to this room</button>
+    </form>
+</div>
+</body>
+</html>

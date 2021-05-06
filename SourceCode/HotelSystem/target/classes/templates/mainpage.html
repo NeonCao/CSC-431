@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        table, td, th {
+            align-content: center;
+            border: 1px solid black;
+        }
+
+        table {
+            border-collapse: collapse;
+            align-content: center;
+            width: 50%;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div align="center">
+    <h1>Current Room List</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Floor</th>
+            <th>Number</th>
+            <th>Type</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="room:${myRooms}">
+            <td th:text="${room.getId()}"></td>
+            <td>
+                <a th:text="${room.getNumber()}"
+                   th:href="@{/doView/{roomId}/{userId}/(roomId=${room.getId()},userId=${userId})}">
+                </a>
+            </td>
+            <td th:text="${room.getType()}"></td>
+            <td th:text="${room.getPrice()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>>
+<div align="center">
+    <h1>All Room List</h1>
+    <form th:action="@{/doSearch/{userId}/(userId=${userId})}">
+        <div class="search">
+            <input type="text" placeholder="please input room number..." name="roomNumber"/>
+            <button><i>search</i></button>
+        </div>
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>Floor</th>
+            <th>Number</th>
+            <th>Type</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="room:${rooms}">
+            <td th:text="${room.getId()}"></td>
+            <td>
+                <a th:text="${room.getNumber()}"
+                   th:href="@{/doView/{roomId}/{userId}/(roomId=${room.getId()},userId=${userId})}">
+                </a>
+            </td>
+            <td th:text="${room.getType()}"></td>
+            <td th:text="${room.getPrice()}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+</div>
+</body>
+</html>
